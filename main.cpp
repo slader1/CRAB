@@ -3,9 +3,20 @@
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    Widget w;
-    w.show();
-    
-    return a.exec();
+    try
+    {
+        QApplication a(argc, argv);
+        Widget w;
+        w.show();
+
+        return a.exec();
+    }
+    catch(std::exception &e)
+    {
+        qFatal(e.what());
+    }
+    catch(...)
+    {
+        qFatal("Unknown fatal error.");
+    }
 }

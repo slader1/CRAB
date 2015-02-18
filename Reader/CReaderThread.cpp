@@ -9,13 +9,10 @@ CReaderThread::CReaderThread(QThread *parent) :
 
 void CReaderThread::run()
 {
-    while(1)
+    forever
     {
         qDebug("Thread loop");
-        QFile l_File("CardNumber");
-        QString l_CardNumber = l_File.readAll();
-        l_File.remove();
-        emit NewCardNumber(l_CardNumber);
-        sleep(10000);
+        emit NewCardNumber("0");
+        QThread::msleep(10000);
     }
 }

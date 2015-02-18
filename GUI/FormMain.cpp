@@ -9,7 +9,9 @@ Widget::Widget(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    connect(&m_ReaderThread, SIGNAL(NewCardNumber(QString)), this, SLOT(NewCardNumber(QString)), Qt::QueuedConnection);
+    m_AnimationTimer.setInterval(2000);
+
+    connect(&m_ReaderThread, SIGNAL(NewCardNumber(QString)), this, SLOT(NewCardNumber(QString)));
 
     m_ReaderThread.start();
 }
@@ -26,9 +28,15 @@ void Widget::on_ButtonGong_clicked()
 
 void Widget::NewCardNumber(const QString &p_CardNumber)
 {
-    //CCustomer l_Customer = m_CRABDB.GetCustomerForCardNumber(p_CardNumber);
-    //CProduct l_Product = m_CRABDB.GetDefaultProductFromCustomer(l_Customer);
-    //m_CRABDB.MakeOrder(l_Customer, l_Product);
-    //display cust/prod
-    QMessageBox::information(this, "Order", "Order");
+    CCustomer l_Customer;
+    if(m_CRABDB.GetCustomerForCardNumber(p_CardNumber, l_Customer))
+    {
+        CProduct l_Product = m_CRABDB.GetDefaultProductFromCustomer(l_Customer);
+        m_CRABDB.MakeOrder(l_Customer, l_Product);
+    }
+    else
+    {
+        //card number not registered
+    }
+    qDebug("Order");
 }

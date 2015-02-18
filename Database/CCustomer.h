@@ -9,12 +9,11 @@ class CCustomer
 public:
     CCustomer();
 
-private:
-    int m_CustomerID;
-    QString m_Name;
-    QString m_CardNumber;
-    QImage m_Image;
-    int m_DefaultProductID;
+    int CustomerID;
+    QString Name;
+    QString CardNumber;
+    QImage Image;
+    int DefaultProductID;
 
 };
 

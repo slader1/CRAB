@@ -11,7 +11,7 @@ class CCRABDB
 public:
     CCRABDB();
 
-    CCustomer& GetCustomerForCardNumber(const QString& p_CardNumber);
+    bool GetCustomerForCardNumber(const QString& p_CardNumber, CCustomer& p_Customer);
 
     CProduct& GetDefaultProductFromCustomer(const CCustomer& p_Customer);
 
@@ -20,7 +20,7 @@ public:
 private:
     QSqlDatabase m_DB;
 
-    QSqlQuery& RunQuery(const QString& p_SQL);
+    unsigned int RunQuery(const QString& p_SQL, QSqlQuery& p_Query);
 
 };
 

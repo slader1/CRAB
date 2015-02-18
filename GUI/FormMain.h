@@ -2,6 +2,7 @@
 #define FORMMAIN_H
 
 #include <QWidget>
+#include <QTimer>
 
 #include "../Database/CCRABDB.h"
 #include "../Reader/CReaderThread.h"
@@ -30,6 +31,7 @@ private:
     CCRABDB m_CRABDB;
     CReaderThread m_ReaderThread;
     CSoundPlayer m_SoundPlayer;
+    QTimer m_AnimationTimer;
 
 };
 
