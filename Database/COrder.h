@@ -3,17 +3,17 @@
 
 #include <QtCore/QDateTime>
 
+/*! Simple container class to store a record from the Order table */
 class COrder
 {
 
 public:
     COrder();
 
-private:
-    int m_OrderID;
-    int m_CustomerID;
-    int m_ProductID;
-    QDateTime m_DateTime;
+    int OrderID;
+    int CustomerID;
+    int ProductID;
+    QDateTime DateTime;
 
 };
 

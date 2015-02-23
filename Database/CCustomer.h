@@ -3,6 +3,7 @@
 
 #include <QtGui/QImage>
 
+/*! Simple container class to store a record from the Customer table */
 class CCustomer
 {
 

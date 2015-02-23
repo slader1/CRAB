@@ -3,17 +3,17 @@
 
 #include <QtGui/QImage>
 
+/*! Simple container class to store a record from the Product table */
 class CProduct               
 {
 
 public:
     CProduct();
 
-private:
-    int m_ProductID;
-    QString m_Name;
-    QImage m_Image;
-    double m_Price;
+    int ProductID;
+    QString Name;
+    QImage Image;
+    double Price;
 
 };
 
