@@ -28,15 +28,22 @@ void Widget::on_ButtonGong_clicked()
 
 void Widget::NewCardNumber(const QString &p_CardNumber)
 {
-    CCustomer l_Customer;
-    if(m_CRABDB.GetCustomerForCardNumber(p_CardNumber, l_Customer))
+    try
     {
-        CProduct l_Product = m_CRABDB.GetDefaultProductFromCustomer(l_Customer);
-        m_CRABDB.MakeOrder(l_Customer, l_Product);
+        CCustomer l_Customer;
+        if(m_CRABDB.GetCustomerForCardNumber(p_CardNumber, l_Customer))
+        {
+            CProduct l_Product = m_CRABDB.GetDefaultProductFromCustomer(l_Customer);
+            m_CRABDB.MakeOrder(l_Customer, l_Product);
+        }
+        else
+        {
+            //card number not registered
+        }
+        qDebug("Order complete");
     }
-    else
+    catch(std::exception &e)
     {
-        //card number not registered
+        QMessageBox::information(this, "Error", e.what());
     }
-    qDebug("Order");
 }
