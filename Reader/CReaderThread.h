@@ -18,6 +18,9 @@ public slots:
 private:
     void run();
 
+    /*! Should return an empty string if no card is present at the reader.
+     * If an error occurs an exception shall be thrown. */
+    QString GetCardNumberFromReader();
 };
 
 #endif // CREADERTHREAD_H

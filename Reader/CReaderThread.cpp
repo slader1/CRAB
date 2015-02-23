@@ -12,7 +12,16 @@ void CReaderThread::run()
     forever
     {
         qDebug("Thread loop");
-        emit NewCardNumber("0");
-        QThread::msleep(10000);
+        QString l_CardNumber = GetCardNumberFromReader();
+        if(l_CardNumber.isEmpty() == false)
+        {
+            emit NewCardNumber(l_CardNumber);
+        }
+        QThread::msleep(1000 * 30);
     }
+}
+
+QString CReaderThread::GetCardNumberFromReader()
+{
+    return "0";
 }
