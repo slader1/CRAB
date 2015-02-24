@@ -14,14 +14,17 @@ TEMPLATE = app
 
 SOURCES +=  main.cpp\
             GUI/FormMain.cpp \
+			GUI/FormOrder.cpp \
             Reader/CReaderThread.cpp \
             Sound/CSoundPlayer.cpp \
             Database/CCRABDB.cpp \
             Database/CCustomer.cpp \
             Database/CProduct.cpp \
             Database/COrder.cpp
+            
 
 HEADERS  += GUI/FormMain.h \
+			GUI/FormOrder.h \
             Reader/CReaderThread.h \
             Sound/CSoundPlayer.h \
             Database/CCRABDB.h \
@@ -29,4 +32,5 @@ HEADERS  += GUI/FormMain.h \
             Database/CProduct.h \
             Database/COrder.h
 
-FORMS    += GUI/FormMain.ui
+FORMS    += GUI/FormMain.ui \
+			GUI/FormOrder.ui
