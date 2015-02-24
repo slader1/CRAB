@@ -9,10 +9,11 @@ Widget::Widget(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    m_AnimationTimer.setInterval(2000);
+    //m_AnimationTimer.setInterval(2000);
 
     connect(&m_ReaderThread, SIGNAL(NewCardNumber(QString)), this, SLOT(NewCardNumber(QString)));
 
+    //m_ReaderThread.moveToThread();
     m_ReaderThread.start();
 }
 
@@ -46,4 +47,9 @@ void Widget::NewCardNumber(const QString &p_CardNumber)
     {
         QMessageBox::information(this, "Error", e.what());
     }
+}
+
+void Widget::on_pushButton_clicked()
+{
+    NewCardNumber("0");
 }

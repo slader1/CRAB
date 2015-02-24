@@ -25,12 +25,29 @@ private slots:
 
     void NewCardNumber(const QString& p_CardNumber);
 
+    void on_pushButton_clicked();
+
 private:
     Ui::Widget *ui;
 
+    /*!
+     * \brief m_CRABDB Database access.
+     */
     CCRABDB m_CRABDB;
+
+    /*!
+     * \brief m_ReaderThread Polls the card reader in a separate thread and sends qt events to this form.
+     */
     CReaderThread m_ReaderThread;
+
+    /*!
+     * \brief m_SoundPlayer Used to play sounds (gong!).
+     */
     CSoundPlayer m_SoundPlayer;
+
+    /*!
+     * \brief m_AnimationTimer Is used to display an order and discard any new card numbers from the reader while in the animation.
+     */
     QTimer m_AnimationTimer;
 
 };
