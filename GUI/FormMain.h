@@ -9,16 +9,16 @@
 #include "../Sound/CSoundPlayer.h"
 
 namespace Ui {
-class Widget;
+class FormMain;
 }
 
-class Widget : public QWidget
+class FormMain : public QWidget
 {
     Q_OBJECT
     
 public:
-    explicit Widget(QWidget *parent = 0);
-    ~Widget();
+    explicit FormMain(QWidget *parent = 0);
+    ~FormMain();
     
 private slots:
     void on_ButtonGong_clicked();
@@ -28,7 +28,7 @@ private slots:
     void on_pushButton_clicked();
 
 private:
-    Ui::Widget *ui;
+    Ui::FormMain *ui;
 
     /*!
      * \brief m_CRABDB Database access.

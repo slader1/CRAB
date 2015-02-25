@@ -3,31 +3,30 @@
 
 #include <QMessageBox>
 
-Widget::Widget(QWidget *parent) :
+FormMain::FormMain(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::Widget)
+    ui(new Ui::FormMain)
 {
     ui->setupUi(this);
 
-    //m_AnimationTimer.setInterval(2000);
+    m_AnimationTimer.setInterval(2000);
 
-    connect(&m_ReaderThread, SIGNAL(NewCardNumber(QString)), this, SLOT(NewCardNumber(QString)));
-
-    //m_ReaderThread.moveToThread();
+    //connect and start thread
+    connect(&m_ReaderThread, &CReaderThread::NewCardNumber, this, &FormMain::NewCardNumber);
     m_ReaderThread.start();
 }
 
-Widget::~Widget()
+FormMain::~FormMain()
 {
     delete ui;
 }
 
-void Widget::on_ButtonGong_clicked()
+void FormMain::on_ButtonGong_clicked()
 {
     m_SoundPlayer.PlayMP3("Sounds/gong.mp3");
 }
 
-void Widget::NewCardNumber(const QString &p_CardNumber)
+void FormMain::NewCardNumber(const QString &p_CardNumber)
 {
     try
     {
@@ -53,7 +52,7 @@ void Widget::NewCardNumber(const QString &p_CardNumber)
     }
 }
 
-void Widget::on_pushButton_clicked()
+void FormMain::on_pushButton_clicked()
 {
     NewCardNumber("0");
 }
