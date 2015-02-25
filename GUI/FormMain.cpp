@@ -9,7 +9,9 @@ FormMain::FormMain(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    //setup timer
     m_AnimationTimer.setInterval(2000);
+    connect(&m_AnimationTimer, &QTimer::timeout, this, &FormMain::StopOrderAnimation);
 
     //connect and start thread
     connect(&m_ReaderThread, &CReaderThread::NewCardNumber, this, &FormMain::NewCardNumber);
@@ -30,6 +32,11 @@ void FormMain::NewCardNumber(const QString &p_CardNumber)
 {
     try
     {
+        if(m_AnimationTimer.isActive())
+        {
+            //animation in progress
+            return;
+        }
         CCustomer l_Customer;
         if(m_CRABDB.GetCustomerForCardNumber(p_CardNumber, l_Customer))
         {
@@ -39,6 +46,8 @@ void FormMain::NewCardNumber(const QString &p_CardNumber)
                 //invalid product
             }
             m_CRABDB.MakeOrder(l_Customer, l_Product);
+
+            StartOrderAnimation(l_Customer, l_Product);
         }
         else
         {
@@ -52,7 +61,23 @@ void FormMain::NewCardNumber(const QString &p_CardNumber)
     }
 }
 
+void FormMain::StartOrderAnimation(const CCustomer &p_Customer, const CProduct &p_Product)
+{
+    m_AnimationTimer.start();
+    m_FormOrder.DisplayOrder(p_Customer, p_Product);
+    m_FormOrder.show();
+    ui->labelReadyForCard->setText("NOT READY FOR CARD");
+    m_SoundPlayer.PlayMP3("Sounds/coin.mp3");
+}
+
+void FormMain::StopOrderAnimation()
+{
+    ui->labelReadyForCard->setText("READY FOR CARD");
+    m_FormOrder.hide();
+    m_AnimationTimer.stop();
+}
+
 void FormMain::on_pushButton_clicked()
 {
-    NewCardNumber("0");
+    NewCardNumber("1");
 }

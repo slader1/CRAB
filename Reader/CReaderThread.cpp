@@ -11,13 +11,14 @@ void CReaderThread::run()
 {
     forever
     {
+        QThread::msleep(1000);
         qDebug("Thread loop");
         QString l_CardNumber = GetCardNumberFromReader();
         if(l_CardNumber.isEmpty() == false)
         {
             emit NewCardNumber(l_CardNumber);
         }
-        QThread::msleep(1000 * 30);
+        QThread::msleep(4000);
     }
 }
 

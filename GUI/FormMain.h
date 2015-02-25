@@ -5,6 +5,7 @@
 #include <QTimer>
 
 #include "../Database/CCRABDB.h"
+#include "../GUI/FormOrder.h"
 #include "../Reader/CReaderThread.h"
 #include "../Sound/CSoundPlayer.h"
 
@@ -25,6 +26,9 @@ private slots:
 
     void NewCardNumber(const QString& p_CardNumber);
 
+    void StartOrderAnimation(const CCustomer& p_Customer, const CProduct& p_Product);
+    void StopOrderAnimation();
+
     void on_pushButton_clicked();
 
 private:
@@ -34,6 +38,11 @@ private:
      * \brief m_CRABDB Database access.
      */
     CCRABDB m_CRABDB;
+
+    /*!
+     * \brief m_FormOrder Used to display orders.
+     */
+    FormOrder m_FormOrder;
 
     /*!
      * \brief m_ReaderThread Polls the card reader in a separate thread and sends qt events to this form.
