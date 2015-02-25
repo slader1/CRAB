@@ -34,7 +34,11 @@ void Widget::NewCardNumber(const QString &p_CardNumber)
         CCustomer l_Customer;
         if(m_CRABDB.GetCustomerForCardNumber(p_CardNumber, l_Customer))
         {
-            CProduct l_Product = m_CRABDB.GetDefaultProductFromCustomer(l_Customer);
+            CProduct l_Product;
+            if(m_CRABDB.GetDefaultProductFromCustomer(l_Customer, l_Product) == false)
+            {
+                //invalid product
+            }
             m_CRABDB.MakeOrder(l_Customer, l_Product);
         }
         else

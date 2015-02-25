@@ -13,7 +13,7 @@ public:
 
     bool GetCustomerForCardNumber(const QString& p_CardNumber, CCustomer& p_Customer);
 
-    CProduct& GetDefaultProductFromCustomer(const CCustomer& p_Customer);
+    bool GetDefaultProductFromCustomer(const CCustomer& p_Customer, CProduct& p_Product);
 
     void MakeOrder(const CCustomer& p_Customer, const CProduct& p_Product);
 

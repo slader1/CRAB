@@ -44,25 +44,24 @@ bool CCRABDB::GetCustomerForCardNumber(const QString& p_CardNumber, CCustomer &p
     return true;
 }
 
-CProduct& CCRABDB::GetDefaultProductFromCustomer(const CCustomer& p_Customer)
+bool CCRABDB::GetDefaultProductFromCustomer(const CCustomer &p_Customer, CProduct &p_Product)
 {
-    CProduct l_Product;
     QSqlQuery l_Query(m_DB);
     unsigned int l_ProductCount = RunQuery("SELECT ProductID, Name, Image, Price FROM Products WHERE ProductID = " + QString::number(p_Customer.DefaultProductID), l_Query);
     if( (l_ProductCount == 1) && (l_Query.first()) )
     {
         //good, fill p_Product
-        l_Product.ProductID = l_Query.value("ProductID").toInt();
-        l_Product.Name = l_Query.value("Name").toString();
-        l_Product.Image = QImage(l_Query.value("Image").toString());
-        l_Product.Price = l_Query.value("Price").toDouble();
+        p_Product.ProductID = l_Query.value("ProductID").toInt();
+        p_Product.Name = l_Query.value("Name").toString();
+        p_Product.Image = QImage(l_Query.value("Image").toString());
+        p_Product.Price = l_Query.value("Price").toDouble();
     }
     else
     {
         //should not happen
         throw std::runtime_error("Invalid DefaultProductID");
     }
-    return l_Product;
+    return true;
 }
 
 void CCRABDB::MakeOrder(const CCustomer& p_Customer, const CProduct& p_Product)
