@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/Icons">
+        <file alias="CoffeeIcon">Images/CoffeeIcon.png</file>
+        <file alias="GongIcon">Images/GongIcon.png</file>
+    </qresource>
+</RCC>

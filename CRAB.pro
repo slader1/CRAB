@@ -34,3 +34,6 @@ HEADERS  += GUI/FormMain.h \
 
 FORMS    += GUI/FormMain.ui \
 			GUI/FormOrder.ui
+
+RESOURCES += \
+    crab_resources.qrc

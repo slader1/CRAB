@@ -29,8 +29,6 @@ private slots:
     void StartOrderAnimation(const CCustomer& p_Customer, const CProduct& p_Product);
     void StopOrderAnimation();
 
-    void on_pushButton_clicked();
-
 private:
     Ui::FormMain *ui;
 
